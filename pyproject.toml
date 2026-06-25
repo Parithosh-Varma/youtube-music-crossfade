@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ytcrossfade"
+version = "0.1.0"
+description = "Download a YouTube Music playlist and merge tracks with crossfade"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.8"
+dependencies = [
+    "yt-dlp>=2024",
+    "pydub>=0.25",
+]
+keywords = ["youtube-music", "crossfade", "playlist", "audio"]
+
+[project.scripts]
+ytcrossfade = "ytcrossfade.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

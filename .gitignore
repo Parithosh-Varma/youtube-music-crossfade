@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+*.egg-info/
+dist/
+build/
+.direnv/
+.venv/
+venv/
+*.mp3
+*.m4a
+*.opus
+*.wav
+*.flac
+downloaded_songs/
+node_modules/
+.DS_Store
