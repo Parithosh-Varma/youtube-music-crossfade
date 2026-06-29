@@ -1,6 +1,5 @@
 import argparse
 import shutil
-from pathlib import Path
 
 from .downloader import download_playlist
 from .mixer import build_crossfade_mix
@@ -68,8 +67,6 @@ def main() -> None:
         quality=args.quality,
         verbose=verbose,
     )
-    files = [Path(f) for f in files]
-
     if not files:
         print("No files were downloaded. Check the URL and try again.")
         return

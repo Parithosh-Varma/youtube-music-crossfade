@@ -1,3 +1,4 @@
+import sys
 import os
 import subprocess
 import shutil
@@ -20,7 +21,7 @@ def download_playlist(
     audio_format: str = "mp3",
     quality: int = 0,
     verbose: bool = True,
-) -> list[str]:
+) -> list[Path]:
     check_deps()
     os.makedirs(out_dir, exist_ok=True)
 
@@ -40,10 +41,10 @@ def download_playlist(
     if not verbose:
         cmd.extend(["--quiet", "--no-warnings"])
 
-    result = subprocess.run(cmd, capture_output=not verbose, text=True)
+    result = subprocess.run(cmd, capture_output=True, text=True)
 
     if result.returncode != 0:
-        raise RuntimeError(f"yt-dlp failed:\n{result.stderr}")
+        print(result.stderr, file=sys.stderr)
+        raise RuntimeError("yt-dlp failed — see error above")
 
-    pattern = f"{out_dir}/*.{audio_format}"
     return sorted(Path(out_dir).glob(f"*.{audio_format}"))
